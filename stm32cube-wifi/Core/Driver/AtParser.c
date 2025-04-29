@@ -31,6 +31,7 @@ void AtParser_Insert(AtParserType* atParser,uint8_t data){
 					atParser->atParserState = AtParser_State_Idle;
 					atParser->atSize = 0;
 					memset(atParser->atBuffer,0,sizeof(atParser->atBuffer));
+					atParser->atParserState = AtParser_State_Idle;
 				}
 			}
 			break;
