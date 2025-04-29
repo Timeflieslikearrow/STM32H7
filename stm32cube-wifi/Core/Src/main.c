@@ -36,6 +36,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <string.h>
+#include "../Controller/AtController.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,8 +57,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static uint8_t Menu = 1;
-static int StateCount = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,20 +86,10 @@ uint8_t uart2RxBuff[50];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	if (huart->Instance == USART1) {
-		// Queue the message until a newline character('\n') appears.
-		// AT responses end with \r\n. ('\r':0x0d, '\n':0x0a)
-		if (uart1RxData == 0x0a) {
-			uart1RxBuff[uart1RxTail] = uart1RxData; // put 0x0a('\n')
-			uart1RxTail++;
-			uart1RxBuff[uart1RxTail] = '\0';
-			uart1RxTail = 0;
-			uart1RxFlag = 1;
-		} else {
-			uart1RxBuff[uart1RxTail] = uart1RxData;
-			uart1RxTail++;
-		}
+		AtParser_Insert(&userParser, uart1RxData);
 		HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
-	} else if (huart->Instance == USART2) {
+	}
+	else if (huart->Instance == USART2) {
 		// Queue the message until a newline character('\n') appears.
 		// AT responses end with \r\n. ('\r':0x0d, '\n':0x0a)
 		if (uart2RxData == 0x0a) {
@@ -116,7 +105,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
 	}
 }
-
 /* USER CODE END 0 */
 
 /**
@@ -174,20 +162,15 @@ int main(void)
   MX_USB_OTG_HS_PCD_Init();
   MX_SPI4_Init();
   /* USER CODE BEGIN 2 */
-	HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
 	HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
+	HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
+	At_Controller_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-		if (uart1RxFlag) {
-			uart1RxFlag = 0;
-			HAL_UART_Transmit(&huart2, uart1RxBuff, strlen(uart1RxBuff), 1000);
-		} else if (uart2RxFlag) {
-			uart2RxFlag = 0;
-			HAL_UART_Transmit(&huart1, uart2RxBuff, strlen(uart2RxBuff), 1000);
-		}
+		At_Controller();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

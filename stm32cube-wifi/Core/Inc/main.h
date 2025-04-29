@@ -69,7 +69,9 @@ void Error_Handler(void);
 #define PSRAM_SPI_CS_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
-
+#include "usart.h"
+#include <stdlib.h>
+#include <string.h>
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
