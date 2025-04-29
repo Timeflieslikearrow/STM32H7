@@ -22,6 +22,7 @@ extern AtCmdBuf atCmdBuf2;
 
 // 수신 버퍼에 쌓인 데이터가 "\r\n" 으로 끝났는지 검사
 uint8_t isAssembled(const AtCmdBuf *b);
+uint8_t receiveAtCommand(AtCmdBuf* at,uint8_t data);
 
 
 #endif /* SRC_AT_AT_H_ */
