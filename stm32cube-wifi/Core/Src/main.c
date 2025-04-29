@@ -73,7 +73,6 @@ void PeriphCommonClock_Config(void);
 //	HAL_UART_Transmit(&huart1, ptr, len, HAL_MAX_DELAY);
 //	return len;
 //}
-
 uint8_t uart1RxData;
 uint8_t uart1RxFlag;
 uint8_t uart1RxTail = 0;
@@ -84,33 +83,39 @@ uint8_t uart2RxFlag;
 uint8_t uart2RxTail = 0;
 uint8_t uart2RxBuff[50];
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-	if (huart->Instance == USART1) {
-		AtParser_Insert(&userParser, uart1RxData);
-		HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
-	}
-	else if (huart->Instance == USART2) {
-		// Queue the message until a newline character('\n') appears.
-		// AT responses end with \r\n. ('\r':0x0d, '\n':0x0a)
-		if (uart2RxData == 0x0a) {
-			uart2RxBuff[uart2RxTail] = uart2RxData; // put 0x0a('\n')
-			uart2RxTail++;
-			uart2RxBuff[uart2RxTail] = '\0';
-			uart2RxTail = 0;
-			uart2RxFlag = 1;
-		} else {
-			uart2RxBuff[uart2RxTail] = uart2RxData;
-			uart2RxTail++;
-		}
-		HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
-	}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == USART1)
+  {
+    AtParser_Insert(&userParser, uart1RxData);
+    HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
+  }
+  else if (huart->Instance == USART2)
+  {
+    // Queue the message until a newline character('\n') appears.
+    // AT responses end with \r\n. ('\r':0x0d, '\n':0x0a)
+    if (uart2RxData == 0x0a)
+    {
+      uart2RxBuff[uart2RxTail] = uart2RxData;  // put 0x0a('\n')
+      uart2RxTail++;
+      uart2RxBuff[uart2RxTail] = '\0';
+      uart2RxTail = 0;
+      uart2RxFlag = 1;
+    }
+    else
+    {
+      uart2RxBuff[uart2RxTail] = uart2RxData;
+      uart2RxTail++;
+    }
+    HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
+  }
 }
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
 
@@ -162,54 +167,56 @@ int main(void)
   MX_USB_OTG_HS_PCD_Init();
   MX_SPI4_Init();
   /* USER CODE BEGIN 2 */
-	HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
-	HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
-	At_Controller_Init();
+  HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
+  HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
+  At_Controller_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	while (1) {
-		At_Controller();
+  while (1)
+  {
+    At_Controller();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	}
+  }
   /* USER CODE END 3 */
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
 
   /*AXI clock gating */
   RCC->CKGAENR = 0xFFFFFFFF;
 
   /** Supply configuration update enable
-  */
+   */
   HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
 
   /** Configure the main internal regulator output voltage
-  */
+   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE0);
 
-  while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
+  while (!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY))
+  {
+  }
 
   /** Configure LSE Drive Capability
-  */
+   */
   HAL_PWR_EnableBkUpAccess();
   __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
 
   /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE
-                              |RCC_OSCILLATORTYPE_LSE;
+   * in the RCC_OscInitTypeDef structure.
+   */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48 | RCC_OSCILLATORTYPE_HSE | RCC_OSCILLATORTYPE_LSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
@@ -229,10 +236,9 @@ void SystemClock_Config(void)
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
-                              |RCC_CLOCKTYPE_D3PCLK1|RCC_CLOCKTYPE_D1PCLK1;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2
+      | RCC_CLOCKTYPE_D3PCLK1 | RCC_CLOCKTYPE_D1PCLK1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.SYSCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV1;
@@ -248,17 +254,16 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief Peripherals Common Clock Configuration
-  * @retval None
-  */
+ * @brief Peripherals Common Clock Configuration
+ * @retval None
+ */
 void PeriphCommonClock_Config(void)
 {
-  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = { 0 };
 
   /** Initializes the peripherals clock
-  */
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_OSPI|RCC_PERIPHCLK_SPI2
-                              |RCC_PERIPHCLK_CKPER;
+   */
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_OSPI | RCC_PERIPHCLK_SPI2 | RCC_PERIPHCLK_CKPER;
   PeriphClkInitStruct.PLL2.PLL2M = 5;
   PeriphClkInitStruct.PLL2.PLL2N = 112;
   PeriphClkInitStruct.PLL2.PLL2P = 2;
@@ -281,16 +286,17 @@ void PeriphCommonClock_Config(void)
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-	/* User can add his own implementation to report the HAL error return state */
-	__disable_irq();
-	while (1) {
-	}
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
   /* USER CODE END Error_Handler_Debug */
 }
 

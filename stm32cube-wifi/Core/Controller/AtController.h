@@ -13,15 +13,13 @@
 // MainState: Idle, ReceivedFromUser, ReceivedFromESP,
 typedef enum
 {
-	MainState_Idle,
-	MainState_RecevFromUser,
-	MainState_RecvFromESP
+  MainState_Idle,
+  MainState_RecevFromUser,
+  MainState_RecvFromESP
 } eMainStateType;
 
 void At_Controller_Init(void);
 extern uint8_t uart2RxFlag;
 extern uint8_t uart2RxBuff[50];
-
-
 
 #endif /* CONTROLLER_ATCONTROLLER_H_ */
