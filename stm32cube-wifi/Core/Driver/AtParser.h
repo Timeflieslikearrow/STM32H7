@@ -24,8 +24,6 @@ typedef struct
   uint32_t atSize;
 } AtParserType;
 
-extern AtParserType userParser;
-extern AtParserType esp32Parser;
 
 void AtParser_Insert(AtParserType *atParser, uint8_t data);
 uint8_t AtParser_IsAssembled(AtParserType *atParser);

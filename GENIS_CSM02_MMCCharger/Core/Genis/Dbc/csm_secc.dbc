@@ -1,0 +1,385 @@
+VERSION ""
+
+
+NS_ :
+
+BS_:
+
+BU_: Vector__XXX
+
+BO_ 2147680257 SeccInformation: 8 Vector__XXX
+SG_ SeccReady : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ SeccStatusCode : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ SeccErrorCode : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ SeccSWVersion : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ ProximityVoltage : 32|8@1+ (0.1,0) [0|25.5] "V" Vector__XXX
+SG_ PwmDutyCycle : 40|10@1+ (0.1,0) [0|102.3] "%" Vector__XXX
+SG_ SeccProtocol : 52|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ PwmVoltage : 56|8@1- (0.1,0) [-12.8|12.7] "V" Vector__XXX
+
+
+BO_ 2147680258 EvEvccId: 8 Vector__XXX
+SG_ EvccId : 0|48@1+ (1,0) [0|0] "" Vector__XXX
+
+
+BO_ 2147680259 EvChargingService: 8 Vector__XXX
+SG_ SelectedPaymentOption : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+SG_ Iso20ControlMode : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+SG_ RequestedEnergyTransferType : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ MaxSupportPoint : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+SG_ BPT_ChannelSelection : 4|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ DepartureTime : 32|32@1+ (1,0) [0|4294967295] "s" Vector__XXX
+
+
+BO_ 2147680260 EvDcChargingStatus: 8 Vector__XXX
+SG_ BulkChargingComplete : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ FullChargingComplete : 9|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ EvReady : 10|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ EvCabinConditioning : 11|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ EvRessConditioning : 12|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ EVErrorCode : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ RESS_Soc : 24|8@1+ (1,0) [0|100] "%" Vector__XXX
+SG_ RemainingTimeFullSoc : 32|16@1+ (1,0) [0|65535] "s" Vector__XXX
+SG_ RemainingTimeBulkSoc : 48|16@1+ (1,0) [0|65535] "s" Vector__XXX
+
+
+BO_ 2147680261 EvDcChargingVariable: 8 Vector__XXX
+SG_ EVTargetCurrent : 0|16@1+ (0.1,0) [0|4000] "A" Vector__XXX
+SG_ EVTargetVoltage : 16|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+SG_ EVMaximumCurrentLimit : 32|16@1+ (0.1,0) [0|4000] "A" Vector__XXX
+SG_ EVMaximumVoltageLimit : 48|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+
+
+BO_ 2147680262 EvDcChargeParameter: 8 Vector__XXX
+SG_ EVEnergyCapacity : 0|16@1+ (1,0) [0|2000] "" Vector__XXX
+SG_ EVEnergyRequest : 16|16@1+ (1,0) [0|2000] "" Vector__XXX
+SG_ EVMaximumPowerLimit : 32|16@1+ (0.1,0) [0|6553.5] "kW" Vector__XXX
+SG_ FullSOC : 48|8@1+ (1,0) [0|255] "%" Vector__XXX
+SG_ BulkSOC : 56|8@1+ (1,0) [0|255] "%" Vector__XXX
+
+
+BO_ 2147680263 EvDcMinimumChargeParam: 8 Vector__XXX
+SG_ EVMinimumPowerLimit : 16|16@1+ (0.1,0) [0|6553.5] "kW" Vector__XXX
+SG_ EVMinimumCurrentLimit : 32|16@1+ (0.1,0) [0|4000] "A" Vector__XXX
+SG_ EVMinimumVoltageLimit : 48|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+
+
+BO_ 2147680264 EvDcDischargeParam: 8 Vector__XXX
+SG_ EVMaximumDischargePower : 0|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMinimumDischargePower : 16|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMaximumDischargeCurrent : 32|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
+SG_ EVMinimumDischargeCurrent : 48|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
+
+
+BO_ 2147680265 EvAcChargeParam: 8 Vector__XXX
+SG_ EAmount : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+SG_ EVMaxVoltage : 16|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+SG_ EVMaxCurrent : 32|16@1+ (0.1,0) [0|6553.5] "A" Vector__XXX
+SG_ EVMinCurrent : 48|16@1+ (0.1,0) [0|6553.5] "A" Vector__XXX
+
+
+BO_ 2147680266 EvAcPresentActivePower: 8 Vector__XXX
+SG_ EVPresentActivePower : 0|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVPresentActivePower_L2 : 16|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVPresentActivePower_L3 : 32|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+
+
+BO_ 2147680267 EvAcPresentReactivePower: 8 Vector__XXX
+SG_ EVPresentReactivePower : 0|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVPresentReactivePower_L2 : 16|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVPresentReactivePower_L3 : 32|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+
+
+BO_ 2147680268 EvAcMaximumChargePower: 8 Vector__XXX
+SG_ EVMaximumChargePower : 0|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMaximumChargePower_L2 : 16|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMaximumChargePower_L3 : 32|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+
+
+BO_ 2147680269 EvAcMinimumChargePower: 8 Vector__XXX
+SG_ EVMinimumChargePower : 0|16@1+ (0.1,0) [0|6553.5] "kW" Vector__XXX
+SG_ EVMinimumChargePower_L2 : 16|16@1+ (0.1,0) [0|6553.5] "kW" Vector__XXX
+SG_ EVMinimumChargePower_L3 : 32|16@1+ (0.1,0) [0|6553.5] "kW" Vector__XXX
+
+
+BO_ 2147680270 EvAcMaximumDischargePower: 8 Vector__XXX
+SG_ EVMaximumDischargePower : 0|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMaximumDischargePower_L2 : 16|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMaximumDischargePower_L3 : 32|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+
+
+BO_ 2147680271 EvAcMinimumDischargePower: 8 Vector__XXX
+SG_ EVMinimumDischargePower : 0|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMinimumDischargePower_L2 : 16|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+SG_ EVMinimumDischargePower_L3 : 32|16@1- (0.1,0) [-3276.8|3276.7] "kW" Vector__XXX
+
+
+BO_ 2147680272 EvTargetEnergy: 8 Vector__XXX
+SG_ EVTargetEnergyRequest : 0|16@1- (0.1,0) [-3276.8|3276.7] "kWh" Vector__XXX
+
+
+BO_ 2147680273 EvEnergyRequestLimit: 8 Vector__XXX
+SG_ EVMaximumEnergyRequest : 0|16@1+ (0.1,0) [0|6553.5] "kWh" Vector__XXX
+SG_ EVMinimumEnergyRequest : 16|16@1+ (0.1,0) [0|6553.5] "kWh" Vector__XXX
+SG_ EVMaximumV2XEnergyRequest : 32|16@1- (0.1,0) [-3276.8|3276.7] "kWh" Vector__XXX
+SG_ EVMinimumV2XEnergyRequest : 48|16@1- (0.1,0) [-3276.8|3276.7] "kWh" Vector__XXX
+
+
+BO_ 2147680282 EvDisplayPresentStatus: 8 Vector__XXX
+SG_ PresentSoc : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+SG_ ChargingComplete : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ InletHot : 9|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ BatteryEnergyCapacity : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+
+BO_ 2147680283 EvDisplayTargetSoc: 8 Vector__XXX
+SG_ TargetSoc : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+SG_ RemainingTime : 32|32@1+ (1,0) [0|4294967295] "s" Vector__XXX
+
+
+BO_ 2147680284 EvDisplayMaximumSoc: 8 Vector__XXX
+SG_ MaximumSoc : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+SG_ RemainingTime : 32|32@1+ (1,0) [0|4294967295] "s" Vector__XXX
+
+
+BO_ 2147680285 EvDisplayMinimumSoc: 8 Vector__XXX
+SG_ MinimumSoc : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+SG_ RemainingTime : 32|32@1+ (1,0) [0|4294967295] "s" Vector__XXX
+
+
+BO_ 2147680513 KVasEvBatteryHeader: 8 Vector__XXX
+SG_ VasEnabled : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+SG_ VasState : 8|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ VasErrorCode : 12|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ VasReceivedCount : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ VasDataLength : 40|10@1+ (1,0) [0|1023] "" Vector__XXX
+SG_ VasDataChecksum : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+
+BO_ 2147680514 KVasEvBatteryData: 8 Vector__XXX
+SG_ SN_or_Length : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ FrameType : 4|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ Data0_or_Length : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ Data1 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ Data2 : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ Data3 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ Data4 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ Data5 : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+SG_ Data6 : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+
+BO_ 2147680753 SeccDateTime: 8 Vector__XXX
+SG_ Year : 0|7@1+ (1,0) [0|127] "" Vector__XXX
+SG_ Month : 8|4@1+ (1,0) [0|15] "" Vector__XXX
+SG_ Day : 16|5@1+ (1,0) [0|31] "" Vector__XXX
+SG_ Hours : 24|5@1+ (1,0) [0|31] "" Vector__XXX
+SG_ Minutes : 32|6@1+ (1,0) [0|63] "" Vector__XXX
+SG_ Seconds : 40|6@1+ (1,0) [0|63] "" Vector__XXX
+
+
+CM_ SG_ 2147680257 SeccStatusCode "This parameter indicates the current state of CSM.";
+CM_ SG_ 2147680257 SeccErrorCode "This parameter indicates the charging error code.";
+CM_ SG_ 2147680257 SeccSWVersion "This value represents the current version of CSM.";
+CM_ SG_ 2147680257 ProximityVoltage "This value Indicates the Proximity Voltage value.";
+CM_ SG_ 2147680257 PwmDutyCycle "This value represents the duty value of CP measured by the CSM.";
+CM_ SG_ 2147680257 SeccProtocol "This value Indicates the SAP selected protocol.";
+CM_ SG_ 2147680257 PwmVoltage "This value represents the PWM voltage value measured by the CSM.";
+CM_ SG_ 2147680259 SelectedPaymentOption "Selected payment option: EIM or PnC";
+CM_ SG_ 2147680259 Iso20ControlMode "Charging Control Mode.";
+CM_ SG_ 2147680259 RequestedEnergyTransferType "Available charging types or methods, Supported by the EVSE.";
+CM_ SG_ 2147680259 MaxSupportPoint "[Optional] Indicates the maximal number of entries in the SAScheduleTuple";
+CM_ SG_ 2147680259 BPT_ChannelSelection "Information Parameter from EV to show if \"Charging\" or \"Discharging\" is planned.";
+CM_ SG_ 2147680259 DepartureTime "[Optional] This element is used to indicate when the EV intends to finish the energy transfer process.";
+CM_ SG_ 2147680260 BulkChargingComplete "[Optional] If set to True, the EV indicates that bulk charge (approx. 80% SOC) is complete.";
+CM_ SG_ 2147680260 FullChargingComplete "If set to True, the EV indicates that full charge (100 % SOC) is complete.";
+CM_ SG_ 2147680260 EvReady "If set to TRUE, the EV is ready to charge.";
+CM_ SG_ 2147680260 EvCabinConditioning "[Optional] Vehicle Cabin Conditioning, The EV is using energy from the DC supply to heat or cool the passenger compartment.";
+CM_ SG_ 2147680260 EvRessConditioning "[Optional] Vehicle RESS Conditioning, the vehicle is using energy from the DC charger to condition the RESS to a target temperature.";
+CM_ SG_ 2147680260 EVErrorCode "If set to TRUE, the EV is ready to charge.";
+CM_ SG_ 2147680260 RESS_Soc "State of charge of the EV's battery (RESS)";
+CM_ SG_ 2147680260 RemainingTimeFullSoc "[Optional] Estimated or calculated time until full charge (100% SOC) is complete";
+CM_ SG_ 2147680260 RemainingTimeBulkSoc "[Optional] Estimated or calculated time until bulk charge (approx. 80% SOC) is complete";
+CM_ SG_ 2147680261 EVTargetCurrent "Instantaneous current requested by the EV";
+CM_ SG_ 2147680261 EVTargetVoltage "Target voltage requested by the EV";
+CM_ SG_ 2147680261 EVMaximumCurrentLimit "Maximum current allowed by the EV";
+CM_ SG_ 2147680261 EVMaximumVoltageLimit "Maximum voltage allowed by the EV";
+CM_ SG_ 2147680262 EVEnergyCapacity "[Optional] Maximum energy capacity supported by the EV";
+CM_ SG_ 2147680262 EVEnergyRequest "[Optional] Amount of energy the EV requests from the EVSE";
+CM_ SG_ 2147680262 EVMaximumPowerLimit "[Optional] Maximum power supported by the EV";
+CM_ SG_ 2147680262 FullSOC "[Optional] SOC at which EV considers the battery to be fully charged";
+CM_ SG_ 2147680262 BulkSOC "[Optional] SOC at which EV considers a fast-charging process to end.";
+CM_ SG_ 2147680263 EVMinimumPowerLimit "Minimum charge power allowed by the EV.";
+CM_ SG_ 2147680263 EVMinimumCurrentLimit "Any target current between this level and zero may, for technical reasons, result in a drop of the actual current to zero ampere";
+CM_ SG_ 2147680263 EVMinimumVoltageLimit "Minimum voltage supported by the EV.";
+CM_ SG_ 2147680264 EVMaximumDischargePower "Maximum discharge power supported by the EV.";
+CM_ SG_ 2147680264 EVMinimumDischargePower "Any target power between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680264 EVMaximumDischargeCurrent "Maximum discharge current supported by the EV.";
+CM_ SG_ 2147680264 EVMinimumDischargeCurrent "Any target current between this level and zero may, for technical reasons, result in a drop of the actual current to zero ampere.";
+CM_ SG_ 2147680265 EAmount "Amount of energy reflecting the EV's estimate how much energy is needed to fulfill the user configured charging goal for the current charging session.";
+CM_ SG_ 2147680265 EVMaxVoltage "The RMS of the maximal nominal voltage the vehicle can accept, measured between one phase and neutral.";
+CM_ SG_ 2147680265 EVMaxCurrent "Maximum current supported by the EV per phase.";
+CM_ SG_ 2147680265 EVMinCurrent "EVMinCurrent is used to indicate to the SECC that charging below this minimum is not energy,cost efficient for the EV. ";
+CM_ SG_ 2147680266 EVPresentActivePower "Present active power achieved by the EV.";
+CM_ SG_ 2147680266 EVPresentActivePower_L2 "[Optional] Present active power achieved by the EV on phase L2.";
+CM_ SG_ 2147680266 EVPresentActivePower_L3 "[Optional] Present active power achieved by the EV on phase L3.";
+CM_ SG_ 2147680267 EVPresentReactivePower "Present reactive power achieved by the EV.";
+CM_ SG_ 2147680267 EVPresentReactivePower_L2 "[Optional] Present reactive power achieved by the EV on phase L2.";
+CM_ SG_ 2147680267 EVPresentReactivePower_L3 "[Optional] Present reactive power achieved by the EV on phase L3.";
+CM_ SG_ 2147680268 EVMaximumChargePower "Maximum charge power allowed by the EV.";
+CM_ SG_ 2147680268 EVMaximumChargePower_L2 "[Optional] Maximum power supported by the EV on phase L2";
+CM_ SG_ 2147680268 EVMaximumChargePower_L3 "[Optional] Maximum power supported by the EV on phase L3";
+CM_ SG_ 2147680269 EVMinimumChargePower "Any target power between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680269 EVMinimumChargePower_L2 "[Optional] Any target power on phase L2 between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680269 EVMinimumChargePower_L3 "[Optional] Any target power on phase L3 between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680270 EVMaximumDischargePower "Maximum discharge power supported by the EV.";
+CM_ SG_ 2147680270 EVMaximumDischargePower_L2 "[Optional] Maximum discharge power supported by the EV on phase L2.";
+CM_ SG_ 2147680270 EVMaximumDischargePower_L3 "[Optional] Maximum discharge power supported by the EV on phase L3.";
+CM_ SG_ 2147680271 EVMinimumDischargePower "Any target power between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680271 EVMinimumDischargePower_L2 "[Optional] Any target power on phase L2 between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680271 EVMinimumDischargePower_L3 "[Optional] Any target power on phase L3 between this level and zero may, for technical reasons, result in a drop of the actual power to zero watts.";
+CM_ SG_ 2147680272 EVTargetEnergyRequest "[Dyn: Mandatory, Sched: Optional] The energy request of the EV it needs to fulfil the target SOC as specified by the owner.";
+CM_ SG_ 2147680273 EVMaximumEnergyRequest "[Dyn: Mandatory, Sched: Optional] Maximum acceptable energy level of the EV.";
+CM_ SG_ 2147680273 EVMinimumEnergyRequest "[Dyn: Mandatory, Sched: Optional] The energy request of the EV it needs to fulfil the minimum SOC as specified by the owner.";
+CM_ SG_ 2147680273 EVMaximumV2XEnergyRequest "[Optional] Energy which may be charged until the PresentSOC has left the range dedicated for cycling activity. A negative value indicates that PresentSOC is above the V2X range.";
+CM_ SG_ 2147680273 EVMinimumV2XEnergyRequest "[Optional] Energy which needs to be charged until the PresentSOC enters the range dedicated for cycling activity. A positive value indicates that PresentSOC is below the V2X range.";
+CM_ SG_ 2147680282 PresentSoc "[Optional] Current State of Charge of the EV battery.";
+CM_ SG_ 2147680282 ChargingComplete "[Optional] Indication if the charging is complete from EV point of view.";
+CM_ SG_ 2147680282 InletHot "[Optional] Inlet temperature too high to accept specific operating condition.";
+CM_ SG_ 2147680282 BatteryEnergyCapacity "[Optional] It is the calculated amount of electrical Energy in Wh stored in the battery when the displayed SOC equals 100 %.";
+CM_ SG_ 2147680283 TargetSoc "[Optional] Target State of Charge of the EV battery EV needs after charging.";
+CM_ SG_ 2147680283 RemainingTime "[Optional] This element is used to indicate the remaining time it takes to reach the TargetSOC.";
+CM_ SG_ 2147680284 MaximumSoc "[Optional] The SOC at which the EV will prohibit any further charging.";
+CM_ SG_ 2147680284 RemainingTime "[Optional] This element is used to indicate the remaining time it takes to reach the maximum SOC.";
+CM_ SG_ 2147680285 MinimumSoc "[Optional] Minimum State of Charge EV needs after charging of the EV battery the EV to keep throughout the charging session.";
+CM_ SG_ 2147680285 RemainingTime "[Optional] This element is used to indicate the remaining time it takes to reach the minimum SOC.";
+CM_ SG_ 2147680513 VasEnabled "Whether Vas is enabled or not.";
+CM_ SG_ 2147680513 VasState "State of Vas Server in CSM.";
+CM_ SG_ 2147680513 VasErrorCode "ErrorCode of Vas Server in CSM.";
+CM_ SG_ 2147680513 VasReceivedCount "Received Vas data count from Ev.";
+CM_ SG_ 2147680513 VasDataLength "Length of last received vas data bytes from Ev.";
+CM_ SG_ 2147680513 VasDataChecksum "XOR Checksum of received battery data.";
+CM_ SG_ 2147680514 FrameType "Signle Frame: 0, FirstFrame: 1, Consecutive Frame: 2";
+CM_ SG_ 2147680753 Year "Year of current time set in SECC.";
+CM_ SG_ 2147680753 Month "Month of current time set in SECC.";
+CM_ SG_ 2147680753 Day "Day of current time set in SECC.";
+CM_ SG_ 2147680753 Hours "Hours of current time set in SECC.";
+CM_ SG_ 2147680753 Minutes "Minutes of current time set in SECC.";
+CM_ SG_ 2147680753 Seconds "Seconds of current time set in SECC.";
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT -3.4E+038 3.4E+038;
+
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+
+BA_ "BusType" "CAN";
+
+BA_ "GenSigStartValue" SG_ 2147680257 SeccReady 0;
+BA_ "GenSigStartValue" SG_ 2147680257 SeccStatusCode 0;
+BA_ "GenSigStartValue" SG_ 2147680257 SeccErrorCode 0;
+BA_ "GenSigStartValue" SG_ 2147680257 SeccSWVersion 0;
+BA_ "GenSigStartValue" SG_ 2147680257 ProximityVoltage 0;
+BA_ "GenSigStartValue" SG_ 2147680257 PwmDutyCycle 0;
+BA_ "GenSigStartValue" SG_ 2147680257 SeccProtocol 0;
+BA_ "GenSigStartValue" SG_ 2147680257 PwmVoltage 0;
+BA_ "GenSigStartValue" SG_ 2147680259 SelectedPaymentOption 0;
+BA_ "GenSigStartValue" SG_ 2147680259 Iso20ControlMode 0;
+BA_ "GenSigStartValue" SG_ 2147680259 RequestedEnergyTransferType 0;
+BA_ "GenSigStartValue" SG_ 2147680259 MaxSupportPoint 0;
+BA_ "GenSigStartValue" SG_ 2147680259 BPT_ChannelSelection 0;
+BA_ "GenSigStartValue" SG_ 2147680259 DepartureTime 0;
+BA_ "GenSigStartValue" SG_ 2147680260 BulkChargingComplete 0;
+BA_ "GenSigStartValue" SG_ 2147680260 FullChargingComplete 0;
+BA_ "GenSigStartValue" SG_ 2147680260 EvReady 0;
+BA_ "GenSigStartValue" SG_ 2147680260 EvCabinConditioning 0;
+BA_ "GenSigStartValue" SG_ 2147680260 EvRessConditioning 0;
+BA_ "GenSigStartValue" SG_ 2147680260 EVErrorCode 0;
+BA_ "GenSigStartValue" SG_ 2147680260 RESS_Soc 0;
+BA_ "GenSigStartValue" SG_ 2147680260 RemainingTimeFullSoc 0;
+BA_ "GenSigStartValue" SG_ 2147680260 RemainingTimeBulkSoc 0;
+BA_ "GenSigStartValue" SG_ 2147680261 EVTargetCurrent 0;
+BA_ "GenSigStartValue" SG_ 2147680261 EVTargetVoltage 0;
+BA_ "GenSigStartValue" SG_ 2147680261 EVMaximumCurrentLimit 0;
+BA_ "GenSigStartValue" SG_ 2147680261 EVMaximumVoltageLimit 0;
+BA_ "GenSigStartValue" SG_ 2147680262 EVEnergyCapacity 0;
+BA_ "GenSigStartValue" SG_ 2147680262 EVEnergyRequest 0;
+BA_ "GenSigStartValue" SG_ 2147680262 EVMaximumPowerLimit 0;
+BA_ "GenSigStartValue" SG_ 2147680262 FullSOC 0;
+BA_ "GenSigStartValue" SG_ 2147680262 BulkSOC 0;
+BA_ "GenSigStartValue" SG_ 2147680263 EVMinimumPowerLimit 0;
+BA_ "GenSigStartValue" SG_ 2147680263 EVMinimumCurrentLimit 0;
+BA_ "GenSigStartValue" SG_ 2147680263 EVMinimumVoltageLimit 0;
+BA_ "GenSigStartValue" SG_ 2147680264 EVMaximumDischargePower 0;
+BA_ "GenSigStartValue" SG_ 2147680264 EVMinimumDischargePower 0;
+BA_ "GenSigStartValue" SG_ 2147680264 EVMaximumDischargeCurrent 0;
+BA_ "GenSigStartValue" SG_ 2147680264 EVMinimumDischargeCurrent 0;
+BA_ "GenSigStartValue" SG_ 2147680265 EAmount 0;
+BA_ "GenSigStartValue" SG_ 2147680265 EVMaxVoltage 0;
+BA_ "GenSigStartValue" SG_ 2147680265 EVMaxCurrent 0;
+BA_ "GenSigStartValue" SG_ 2147680265 EVMinCurrent 0;
+BA_ "GenSigStartValue" SG_ 2147680266 EVPresentActivePower 0;
+BA_ "GenSigStartValue" SG_ 2147680266 EVPresentActivePower_L2 0;
+BA_ "GenSigStartValue" SG_ 2147680266 EVPresentActivePower_L3 0;
+BA_ "GenSigStartValue" SG_ 2147680267 EVPresentReactivePower 0;
+BA_ "GenSigStartValue" SG_ 2147680267 EVPresentReactivePower_L2 0;
+BA_ "GenSigStartValue" SG_ 2147680267 EVPresentReactivePower_L3 0;
+BA_ "GenSigStartValue" SG_ 2147680268 EVMaximumChargePower 0;
+BA_ "GenSigStartValue" SG_ 2147680268 EVMaximumChargePower_L2 0;
+BA_ "GenSigStartValue" SG_ 2147680268 EVMaximumChargePower_L3 0;
+BA_ "GenSigStartValue" SG_ 2147680269 EVMinimumChargePower 0;
+BA_ "GenSigStartValue" SG_ 2147680269 EVMinimumChargePower_L2 0;
+BA_ "GenSigStartValue" SG_ 2147680269 EVMinimumChargePower_L3 0;
+BA_ "GenSigStartValue" SG_ 2147680270 EVMaximumDischargePower 0;
+BA_ "GenSigStartValue" SG_ 2147680270 EVMaximumDischargePower_L2 0;
+BA_ "GenSigStartValue" SG_ 2147680270 EVMaximumDischargePower_L3 0;
+BA_ "GenSigStartValue" SG_ 2147680271 EVMinimumDischargePower 0;
+BA_ "GenSigStartValue" SG_ 2147680271 EVMinimumDischargePower_L2 0;
+BA_ "GenSigStartValue" SG_ 2147680271 EVMinimumDischargePower_L3 0;
+BA_ "GenSigStartValue" SG_ 2147680272 EVTargetEnergyRequest 0;
+BA_ "GenSigStartValue" SG_ 2147680273 EVMaximumEnergyRequest 0;
+BA_ "GenSigStartValue" SG_ 2147680273 EVMinimumEnergyRequest 0;
+BA_ "GenSigStartValue" SG_ 2147680273 EVMaximumV2XEnergyRequest 0;
+BA_ "GenSigStartValue" SG_ 2147680273 EVMinimumV2XEnergyRequest 0;
+BA_ "GenSigStartValue" SG_ 2147680282 PresentSoc 0;
+BA_ "GenSigStartValue" SG_ 2147680282 ChargingComplete 0;
+BA_ "GenSigStartValue" SG_ 2147680282 InletHot 0;
+BA_ "GenSigStartValue" SG_ 2147680282 BatteryEnergyCapacity 0;
+BA_ "GenSigStartValue" SG_ 2147680283 TargetSoc 0;
+BA_ "GenSigStartValue" SG_ 2147680283 RemainingTime 0;
+BA_ "GenSigStartValue" SG_ 2147680284 MaximumSoc 0;
+BA_ "GenSigStartValue" SG_ 2147680284 RemainingTime 0;
+BA_ "GenSigStartValue" SG_ 2147680285 MinimumSoc 0;
+BA_ "GenSigStartValue" SG_ 2147680285 RemainingTime 0;
+BA_ "GenSigStartValue" SG_ 2147680513 VasEnabled 0;
+BA_ "GenSigStartValue" SG_ 2147680513 VasState 0;
+BA_ "GenSigStartValue" SG_ 2147680513 VasErrorCode 0;
+BA_ "GenSigStartValue" SG_ 2147680513 VasReceivedCount 0;
+BA_ "GenSigStartValue" SG_ 2147680513 VasDataLength 0;
+BA_ "GenSigStartValue" SG_ 2147680513 VasDataChecksum 0;
+BA_ "GenSigStartValue" SG_ 2147680514 SN_or_Length 0;
+BA_ "GenSigStartValue" SG_ 2147680514 FrameType 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data0_or_Length 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data1 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data2 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data3 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data4 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data5 0;
+BA_ "GenSigStartValue" SG_ 2147680514 Data6 0;
+BA_ "GenSigStartValue" SG_ 2147680753 Year 0;
+BA_ "GenSigStartValue" SG_ 2147680753 Month 0;
+BA_ "GenSigStartValue" SG_ 2147680753 Day 0;
+BA_ "GenSigStartValue" SG_ 2147680753 Hours 0;
+BA_ "GenSigStartValue" SG_ 2147680753 Minutes 0;
+BA_ "GenSigStartValue" SG_ 2147680753 Seconds 0;
+
+VAL_ 2147680257 SeccStatusCode 0 "NONE" 1 "READY" 2 "WAIT_HANDSHAKE" 3 "SESSION_READY" 4 "AUTH_CHECK" 5 "CHARGE_PARAM_CHECK" 6 "CABLE_CHECK" 7 "PRE_CHARGE" 8 "CHARGING" 9 "STOP_CHARGING" 10 "FAILURE_STOPPED" 11 "NORMAL_STOPPED" ;
+VAL_ 2147680257 SeccErrorCode 0 "V2G_E_NO_ERROR" 1 "V2G_E_FAIL" 2 "V2G_E_SLAC_OPEN_CHANNEL" 3 "V2G_E_SLAC_TIMEOUT" 4 "V2G_E_SLAC_STOPPED" 6 "V2G_E_SOCKET_ERROR" 7 "V2G_E_SOCKET_BIND_ERROR" 8 "V2G_E_SOCKET_LISTEN_ERROR" 9 "V2G_E_SOCKET_ADD_MEMBERSHIP_ERROR" 16 "V2G_E_GET_MULTICAST_ADDRESS" 17 "V2G_E_GET_ADDRESS_INFO" 18 "V2G_E_INIT_UDP_SOCKET" 19 "V2G_E_INIT_TCP_SOCKET" 20 "V2G_E_TCP_CONNECT_FAIL" 21 "V2G_E_TCP_CONNECT_TIMEOUT" 22 "V2G_E_UDP_RECV" 23 "V2G_E_SET_SOCK_OPT" 24 "V2G_E_TLS_HANDSHAKE" 48 "V2G_E_V2GTP_SEND_ERROR" 49 "V2G_E_V2GTP_RECV_ERROR" 50 "V2G_E_V2GTP_TYPE_ERROR" 51 "V2G_E_TCP_DISCONNECTED" 52 "V2G_E_INVALID_V2GTP_VERSION" 53 "V2G_E_INVALID_V2GTP_TYPE" 54 "V2G_E_INVALID_V2GTP_LENGTH" 55 "V2G_E_READ_V2GTP_DATA" 64 "V2G_E_SDP_FAILED" 65 "V2G_E_SDP_TIMEOUT" 66 "V2G_E_SDP_REQUSET_INVALID_LENGTH" 67 "V2G_E_SDP_RESPONSE_LEN" 68 "V2G_E_SDP_RECV_ERROR" 69 "V2G_E_SDP_REQ_PARSE_ERROR" 70 "V2G_E_APP_PROTOCOL_ERR" 71 "V2G_E_APP_PROTOCOL_NOT_FOUND" 80 "V2G_E_EXI_APP_HAND_ENCODE" 81 "V2G_E_EXI_APP_HAND_DECODE" 82 "V2G_E_EXI_DIN_ENCODE" 83 "V2G_E_EXI_DIN_DECODE" 
+84 "V2G_E_EXI_ISO1_ENCODE" 85 "V2G_E_EXI_ISO1_DECODE" 86 "V2G_E_EXI_ISO2_ENCODE" 87 "V2G_E_EXI_ISO2_DECODE" 88 "V2G_E_EXI_XMLDSIG_FRAGMENT_ENCODE" 89 "V2G_E_EXI_ISO1_FRAGMENT_ENCODE" 90 "V2G_E_UNKNOWN_MESSAGE" 96 "V2G_E_RESPONSE_FAIL" 97 "V2G_E_FAIL_SEQUENCE_ERROR" 98 "V2G_E_FAIL_SERVICE_ID_INVALID" 99 "V2G_E_FAIL_UNKNOWN_SESSION" 100 "V2G_E_FAIL_PAYMENT_SELECTION_INVALID" 101 "V2G_E_FAIL_WRONG_CHARGE_PARAMETER" 102 "V2G_E_FAIL_WRONG_ENERGY_TRANSFER_TYPE" 144 "V2G_E_SECC_SEQUENCE_TIMEOUT" 145 "V2G_E_EMERGENCY_SHUTDOWN" 146 "V2G_E_EV_DISCONNECTED" 147 "V2G_E_DETECT_STATE_E" 148 "V2G_E_STOP_STATE_B_TIMEOUT" 149 "V2G_E_START_STATE_C_TIMEOUT" 192 "V2G_E_FAIL_PARSE_X509" 193 "V2G_E_FAIL_PARSE_PKEY" 194 "V2G_E_FAIL_X509_CHAIN_SIGNATURE_INVALID" 195 "V2G_E_FAIL_X509_VALIDITY_EXPIRED" 196 "V2G_E_FAIL_X509_VALIDITY_FUTURE" 197 "V2G_E_FAIL_SIGNATURE_ERROR" 198 "V2G_E_FAIL_XML_REFERENCE_INVALID" ;
+VAL_ 2147680257 SeccProtocol 0 "APP_PROTOCOL_NONE" 1 "APP_PROTOCOL_DIN70121_RC6" 2 "APP_PROTOCOL_ISO_15118_CD1" 3 "APP_PROTOCOL_ISO_15118_20_AC" 4 "APP_PROTOCOL_ISO_15118_20_DC" 5 "APP_PROTOCOL_IEC61851" ;
+VAL_ 2147680259 SelectedPaymentOption 0 "EIM_ONLY" 1 "PNC_ONLY" 2 "EIM_PNC_ALL" ;
+VAL_ 2147680259 Iso20ControlMode 0 "None" 1 "Schedule" 2 "Dynamic" ;
+VAL_ 2147680259 RequestedEnergyTransferType 0 "AC_SINGLE_PHASE_CORE" 1 "AC_THREE_PHASE_CORE" 2 "DC_CORE" 3 "DC_EXTENDED" 4 "DC_COMBO_CORE" 5 "DC_DUAL" ;
+VAL_ 2147680259 BPT_ChannelSelection 0 "BPT_Channel_NotSelected" 1 "BPT_Channel_Charge" 2 "BPT_Channel_Discharge" ;
+VAL_ 2147680513 VasState 0 "Secc_Vas_State_None" 1 "Secc_Vas_State_WaitHandshake" 2 "Secc_Vas_State_WaitRequest" 3 "Secc_Vas_State_ParsePayload" 4 "Secc_Vas_State_Shutdown" ;
+VAL_ 2147680513 VasErrorCode 0 "Secc_Vas_E_NO_ERROR" 1 "Secc_Vas_E_SOCKET_BIND_ERROR" 2 "Secc_Vas_E_SOCKET_LISTEN_ERROR" 3 "Secc_Vas_E_TCP_CONNECT_FAIL" 4 "Secc_Vas_E_TCP_CONNECT_TIMEOUT" 5 "Secc_Vas_E_TCP_DISCONNECTED" 6 "Secc_Vas_E_SEQUENCE_TIMEOUT" ;
+

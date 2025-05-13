@@ -1,7 +1,6 @@
 #include "AtParser.h"
 
-AtParserType userParser = { AtParser_State_Idle, { 0, }, 0 };
-AtParserType esp32Parser = { AtParser_State_Idle, { 0, }, 0 };
+
 
 void AtParser_Insert(AtParserType *atParser, uint8_t data)
 {

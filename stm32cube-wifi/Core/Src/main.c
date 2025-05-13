@@ -73,43 +73,7 @@ void PeriphCommonClock_Config(void);
 //	HAL_UART_Transmit(&huart1, ptr, len, HAL_MAX_DELAY);
 //	return len;
 //}
-uint8_t uart1RxData;
-uint8_t uart1RxFlag;
-uint8_t uart1RxTail = 0;
-uint8_t uart1RxBuff[50];
 
-uint8_t uart2RxData;
-uint8_t uart2RxFlag;
-uint8_t uart2RxTail = 0;
-uint8_t uart2RxBuff[50];
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  if (huart->Instance == USART1)
-  {
-    AtParser_Insert(&userParser, uart1RxData);
-    HAL_UART_Receive_IT(&huart1, &uart1RxData, 1);
-  }
-  else if (huart->Instance == USART2)
-  {
-    // Queue the message until a newline character('\n') appears.
-    // AT responses end with \r\n. ('\r':0x0d, '\n':0x0a)
-    if (uart2RxData == 0x0a)
-    {
-      uart2RxBuff[uart2RxTail] = uart2RxData;  // put 0x0a('\n')
-      uart2RxTail++;
-      uart2RxBuff[uart2RxTail] = '\0';
-      uart2RxTail = 0;
-      uart2RxFlag = 1;
-    }
-    else
-    {
-      uart2RxBuff[uart2RxTail] = uart2RxData;
-      uart2RxTail++;
-    }
-    HAL_UART_Receive_IT(&huart2, &uart2RxData, 1);
-  }
-}
 /* USER CODE END 0 */
 
 /**
@@ -176,7 +140,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    At_Controller();
+    At_Controller_MainFunction();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
