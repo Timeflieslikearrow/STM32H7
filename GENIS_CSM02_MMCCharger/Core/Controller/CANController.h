@@ -47,7 +47,10 @@
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
 void CAN_Controller_MainFunction(void);
+void App_CanRxMainFunction(GenisCsm_ChargerType *Charger);
+void App_CanTxMainFunction(GenisCsm_ChargerType *Charger);
  
+
 #ifdef __cplusplus
 extern "C" {
 #endif

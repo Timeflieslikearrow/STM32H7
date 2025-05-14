@@ -46,7 +46,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+  GenisCsm_ChargerType charger = {0};
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -149,7 +149,7 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-  GenisCsm_ChargerType charger = {0};
+
   GenisCsm_Charger_Init(&charger);
   /* Infinite loop */
   for(;;)
@@ -170,12 +170,12 @@ void StartDefaultTask(void *argument)
 void CANTxControl_Task(void *argument)
 {
   /* USER CODE BEGIN CANTxControl_Task */
-  FDCAN_Filter_Config_mask32();
+  FDCAN_Filter_Config_mask32_Init();
   /* Infinite loop */
   for(;;)
   {
-    CAN_Tx();
-    osDelay(100);
+    App_CanTxMainFunction(&charger);
+    osDelay(1);
   }
   /* USER CODE END CANTxControl_Task */
 }
@@ -193,8 +193,8 @@ void CANRxControl_Task(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    CAN_Controller_MainFunction();
-    osDelay(300);
+    App_CanRxMainFunction(&charger);
+    osDelay(1);
   }
   /* USER CODE END CANRxControl_Task */
 }

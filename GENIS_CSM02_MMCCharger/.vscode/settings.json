@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "charger.h": "c",
+        "user_impl.h": "c"
+    }
+}

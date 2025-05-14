@@ -20,6 +20,9 @@
  *  INCLUDES
  *********************************************************************************************************************/
 #include "CANController.h"
+#include "../Genis/Charger/User_Impl.h"
+#include "../Genis/Charger/Charger.h"
+#include "../Driver/CAN.h"
 /**********************************************************************************************************************
  *  LOCAL CONSTANT MACROS
  *********************************************************************************************************************/
@@ -73,3 +76,33 @@ void CAN_Controller_MainFunction(void)
     }
   }
 }
+
+void App_CanRxMainFunction(GenisCsm_ChargerType *Charger)
+{
+  while(TRUE)
+  {
+//    Can_DataType CanData;
+    uint8 CanData[8];
+    if(xQueueReceive(App_CanRxQueue, CanData,1000) == pdPASS)
+    {
+      printf("CAN_RxData : %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+//          CanData.Data[0],CanData.Data[1],CanData.Data[2],CanData.Data[3],
+//          CanData.Data[4],CanData.Data[5],CanData.Data[6],CanData.Data[7]);
+          CanData[0],CanData[1],CanData[2],CanData[3],
+          CanData[4],CanData[5],CanData[6],CanData[7]);
+    }
+    Delay(100);
+  }
+}
+
+void App_CanTxMainFunction(GenisCsm_ChargerType *Charger)
+{
+  while(TRUE)
+  {
+    uint8 data[8] = {0};
+
+    CAN_Tx(data);
+    Delay(100);
+  }
+}
+
