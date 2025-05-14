@@ -25,6 +25,7 @@
 
 #include "Platform_Types.h"
 #include "Charger.h"
+#include "../Driver/UART.h"
 
 /**********************************************************************************************************************
 *  GLOBAL CONSTANT MACROS

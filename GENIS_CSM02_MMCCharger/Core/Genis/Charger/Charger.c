@@ -375,6 +375,8 @@ static void GenisCsm_SetStopControl(GenisCsm_ChargerType* Charger, StopControlTy
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
+
+
 void GenisCsm_Charger_Init(GenisCsm_ChargerType* Charger)
 {
   GenisCsm_Initialize(Charger);

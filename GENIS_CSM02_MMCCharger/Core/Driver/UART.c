@@ -63,6 +63,19 @@ int _write(int file, char *ptr, int len) {
   return len;
 }
 
+void UART_Logging(const char* __restrict format, ...) {
+    char buffer[255];
+    va_list args;
+
+    va_start(args, format);
+    int len = vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+
+    if (len > 0) {
+        HAL_UART_Transmit(&huart2, (uint8_t*)buffer, len, 100);
+    }
+}
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART2)

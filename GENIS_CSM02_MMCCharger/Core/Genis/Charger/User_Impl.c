@@ -102,6 +102,7 @@ void GenisCsm_Initialize(GenisCsm_ChargerType *Charger)
   can_csm_charger_t *ChargerBus = &Charger->ChargerBus;
   ChargerBus->ChargerStatus.IdentificationOptionType = PAYMENT_OPTION_ALL;
   ChargerBus->ChargerStatus.ChargingPriority = CHARGING_PRIORITY_IEC61851;
+  Charger->UserHandler.Logging =  UART_Logging;
 
 #if (GENIS_CSM_CHARGING_TYPE == GENIS_CSM_CHARGING_TYPE_AC)
   GenisCsm_AcInitialize(Charger);

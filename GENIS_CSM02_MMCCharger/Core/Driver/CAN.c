@@ -71,17 +71,16 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
   if((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET)
   {
     char msg[50];
-    uint8_t rcvd_msg[5];
 
     /* Retrieve Rx messages from RX FIFO0 */
-    if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CanRxHeader, rcvd_msg) != HAL_OK)
+    if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CanRxHeader, CanRxData) != HAL_OK)
     {
       Error_Handler();
     }
     CanRxFlag = 1;
 
-    sprintf(msg,"Message Received : %s\r\n",rcvd_msg);
-    HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+//    sprintf(msg,"Message Received : %02X\r\n",CanRxData);
+//    HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
   }
 }
 
@@ -142,13 +141,12 @@ void CAN_Tx(void)
   CanTxHeader.MessageMarker = 0;
 
   char msg[50];
-  uint8_t our_message[5] = { 'H', 'E', 'L', 'L', 'O' };
-
-  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &CanTxHeader, our_message) != HAL_OK)
+  for(int i=0; i<8; i++) CanTxData[i] = (uint8_t)i;
+  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &CanTxHeader, CanTxData) != HAL_OK)
   {
     Error_Handler();
   }
 
-  sprintf(msg, "Message Transmitted\r\n");
-  HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
+//  sprintf(msg, "Message Transmitted\r\n");
+//  HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
 }

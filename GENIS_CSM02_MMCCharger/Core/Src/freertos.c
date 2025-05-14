@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../Driver/CAN.h"
+#include "../Controller/CANController.h"
+#include "../Genis/Charger/Charger.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -148,28 +149,13 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+  GenisCsm_ChargerType charger = {0};
+  GenisCsm_Charger_Init(&charger);
   /* Infinite loop */
   for(;;)
   {
-    if(CanRxFlag)
-    {
-      CanRxFlag = 0;
-      if(CanRxHeader.IdType == FDCAN_STANDARD_ID)
-      {
-        printf("H743_Mode : CAN_TEST_MODE, RX, std_id : %03lX %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            (uint16_t)CanRxHeader.Identifier,CanRxData[0],
-            CanRxData[1],CanRxData[2],CanRxData[3],CanRxData[4],
-            CanRxData[5],CanRxData[6],CanRxData[7]);
-      }
-      else
-      {
-        printf("H743_Mode : CAN_TEST_MODE, RX, std_id : %03lX %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            (uint16_t)CanRxHeader.Identifier,CanRxData[0],
-            CanRxData[1],CanRxData[2],CanRxData[3],CanRxData[4],
-            CanRxData[5],CanRxData[6],CanRxData[7]);
-      }
-    }
-    osDelay(300);
+    GenisCsm_Charger_MainFunction(&charger);
+    osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -207,8 +193,8 @@ void CANRxControl_Task(void *argument)
   /* Infinite loop */
   for(;;)
   {
-
-    osDelay(1);
+    CAN_Controller_MainFunction();
+    osDelay(300);
   }
   /* USER CODE END CANRxControl_Task */
 }
