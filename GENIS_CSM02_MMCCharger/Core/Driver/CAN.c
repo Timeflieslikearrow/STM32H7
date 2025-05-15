@@ -62,29 +62,35 @@ static FDCAN_FilterTypeDef sFilterConfig;
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
-void HAL_FDCAN_TxBufferCompleteCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t BufferIndex)
-{
-
-  char msg[50];
-  sprintf(msg, "Transmit IT\r\n");
-  HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
-}
+//void HAL_FDCAN_TxBufferCompleteCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t BufferIndex)
+//{
+//
+//  char msg[50];
+//  sprintf(msg, "Transmit IT\r\n");
+//  HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
+//}
 
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 {
   if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET)
   {
     char msg[50];
+    Can_DataType CanData;
 
     /* Retrieve Rx messages from RX FIFO0 */
-    if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CanRxHeader, CanRxData) != HAL_OK)
+    if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CanRxHeader, CanData.Data) == HAL_OK)
+    {
+      CanData.Id   = CanRxHeader.Identifier;
+      CanData.Dlc  = CanRxHeader.DataLength;
+    }
+    else
     {
       Error_Handler();
     }
     CanRxFlag = 1;
     if(App_CanRxQueue != NULL_PTR)
     {
-      xQueueSendFromISR(App_CanRxQueue, &CanRxData, 0);
+      xQueueSendFromISR(App_CanRxQueue, &CanData, 0);
     }  
 //    sprintf(msg,"Message Received : %02X\r\n",CanRxData);
 //    HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
@@ -132,11 +138,11 @@ void FDCAN_Filter_Config_mask32_Init(void)
 
 }
 
-void CAN_Tx(uint8 *Data)
+void CAN_Tx(uint32 Id, uint8 *Data)
 {
   /* Prepare Tx Header */
   FDCAN_TxHeaderTypeDef CanTxHeader = {0};
-  CanTxHeader.Identifier = 0x106;   // 0x321;
+  CanTxHeader.Identifier = Id;   // 0x321;
   CanTxHeader.IdType = FDCAN_EXTENDED_ID;
   CanTxHeader.TxFrameType = FDCAN_DATA_FRAME;
   CanTxHeader.DataLength = FDCAN_DLC_BYTES_8;
@@ -147,8 +153,8 @@ void CAN_Tx(uint8 *Data)
   CanTxHeader.MessageMarker = 0;
 
   char msg[50];
-  for (int i = 0; i < 8; i++)
-    Data[i] = (uint8_t) i;
+//  for (int i = 0; i < 8; i++)
+//    Data[i] = (uint8_t) i;
   if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &CanTxHeader, Data) != HAL_OK)
   {
     Error_Handler();

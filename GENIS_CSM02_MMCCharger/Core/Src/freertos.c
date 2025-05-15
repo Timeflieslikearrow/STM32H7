@@ -46,7 +46,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-  GenisCsm_ChargerType charger = {0};
+  GenisCsm_ChargerType Charger = {0};
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -150,12 +150,12 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
 
-  GenisCsm_Charger_Init(&charger);
+  GenisCsm_Charger_Init(&Charger);
   /* Infinite loop */
   for(;;)
   {
-    GenisCsm_Charger_MainFunction(&charger);
-    osDelay(1);
+    GenisCsm_Charger_MainFunction(&Charger);
+    osDelay(100);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -174,7 +174,7 @@ void CANTxControl_Task(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    App_CanTxMainFunction(&charger);
+    App_CanTxMainFunction(&Charger);
     osDelay(1);
   }
   /* USER CODE END CANTxControl_Task */
@@ -193,7 +193,7 @@ void CANRxControl_Task(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    App_CanRxMainFunction(&charger);
+    App_CanRxMainFunction(&Charger);
     osDelay(1);
   }
   /* USER CODE END CANRxControl_Task */

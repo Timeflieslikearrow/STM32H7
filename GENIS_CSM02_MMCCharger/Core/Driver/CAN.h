@@ -64,7 +64,7 @@ extern QueueHandle_t App_CanRxQueue;
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
 void FDCAN_Filter_Config_mask32_Init(void);
-void CAN_Tx(uint8 *Data);
+void CAN_Tx(uint32 Id, uint8 *Data);
 void App_CanRxMainFunction(GenisCsm_ChargerType *Charger);
 
 #ifdef __cplusplus
