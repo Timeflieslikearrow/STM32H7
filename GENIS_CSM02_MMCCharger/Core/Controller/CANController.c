@@ -91,39 +91,53 @@ void App_CanRxMainFunction(GenisCsm_ChargerType *Charger)
       memcpy(&u64, CanData.Data, 8);
       candb_csm_secc_unpack_message(&Charger->SeccBus, CanData.Id | 0x80000000, u64, 8, 0);
       //SeccInformation
-      if (CanData.Id == 0x30001)
+      switch (CanData.Id)
       {
-        SeccStatusCodeType status = Charger->SeccBus.SeccInformation.SeccStatusCode;
+        case 0x30001:
+          SeccStatusCodeType seccStatus = Charger->SeccBus.SeccInformation.SeccStatusCode;
 
-        Charger->UserHandler.Logging("SECC Status: %s \r\n", SeccStatus_ToString(status));
-
-        // SECC 정보 출력
-        Charger->UserHandler.Logging("SECC Info - Version: %d, PWM: %d, Status: %s\r\n",
-                                     Charger->SeccBus.SeccInformation.SeccSWVersion,
-                                     Charger->SeccBus.SeccInformation.PwmVoltage,
-                                     SeccStatus_ToString(Charger->SeccBus.SeccInformation.SeccStatusCode));
-      }
-      // EvDcChargingStatus
-      if (CanData.Id == 0x30004)
-      {
-        SeccStatusCodeType status = Charger->SeccBus.SeccInformation.SeccStatusCode;
-
-        Charger->UserHandler.Logging("SECC Status : %s\r\n", SeccStatus_ToString(status));
-
-        // SECC 정보 출력
-        Charger->UserHandler.Logging("SECC Info - Version: %d, PWM: %d, Status: %s\r\n",
-                                     Charger->SeccBus.SeccInformation.SeccSWVersion,
-                                     Charger->SeccBus.SeccInformation.PwmVoltage,
-                                     SeccStatus_ToString(Charger->SeccBus.SeccInformation.SeccStatusCode));
-      }
-      // SeccUdsServer
-      if (CanData.Id == 0x300FF)
-      {
+          switch (seccStatus)
+          {
+            case SECC_STATUS_NONE:
+              Charger->UserHandler.Logging(
+                  "[PWM Voltage: %dV, PWM DutyCycle : %d%%] Waiting for start charging\r\n",
+                  Charger->SeccBus.SeccInformation.PwmVoltage, Charger->SeccBus.SeccInformation.PwmDutyCycle);
+              break;
+            case SECC_STATUS_READY:
+              // SECC 정보 출력
+              Charger->UserHandler.Logging(
+                  "[PWM Voltage: %dV, PWM DutyCycle : %d%%]\r\n",
+                  Charger->SeccBus.SeccInformation.PwmVoltage, Charger->SeccBus.SeccInformation.PwmDutyCycle);
+              break;
+            case SECC_STATUS_WAIT_HANDSHAKE:
+              Charger->UserHandler.Logging(
+                  "[PWM Voltage: %dV, PWM DutyCycle : %d%%]\r\n",
+                  Charger->SeccBus.SeccInformation.PwmVoltage, Charger->SeccBus.SeccInformation.PwmDutyCycle);
+              break;
+            case SECC_STATUS_SESSION_READY:
+              Charger->UserHandler.Logging(
+                  "[PWM Voltage: %dV, PWM DutyCycle : %d%%]\r\n",
+                  Charger->SeccBus.SeccInformation.PwmVoltage, Charger->SeccBus.SeccInformation.PwmDutyCycle);
+              break;
+          }
+          break;
+          // EvEvccId
+        case 0x30002:
+          Charger->UserHandler.Logging("SECC EvccId : %d\r\n", SeccStatus_ToString(Charger->SeccBus.EvEvccId.EvccId));
+          break;
+          // EvDcChargingStatus
+        case 0x30004:
+          Charger->UserHandler.Logging("EvReady : %d\r\n", Charger->SeccBus.EvDcChargingStatus.EvReady);
+          break;
+        case 0x30005:
+          break;
+          // SeccUdsServer
+        case 0x300FF:
+          break;
       }
     }
-
-    Delay(100);
   }
+  Delay(100);
 }
 
 void App_CanTxMainFunction(GenisCsm_ChargerType *Charger)
